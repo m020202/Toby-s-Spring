@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PaymentService {
-    private final WebApiExRateProvider exRateProvider;
+    private final ExRateProvider exRateProvider;
     public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
-        BigDecimal exRate = exRateProvider.getWebExRate(currency);
+        BigDecimal exRate = exRateProvider.getExRate(currency);
 
         BigDecimal convertAmount = foreignCurrencyAmount.multiply(exRate);
         LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
@@ -16,6 +16,6 @@ public class PaymentService {
     }
 
     public PaymentService() {
-        this.exRateProvider = new WebApiExRateProvider();
+        this.exRateProvider = new SimpleExRateProvider();
     }
 }
