@@ -1,10 +1,10 @@
 package spring.HelloSpring;
 
-import lombok.Getter;
+import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-@Getter
+
 public class Payment {
     private Long orderId;
     private String currency;

@@ -1,8 +1,5 @@
 package spring.HelloSpring;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,7 +14,6 @@ public class PaymentService {
 
         return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertAmount, validUntil);
     }
-
     public PaymentService(ExRateProvider exRateProvider) {
         this.exRateProvider = exRateProvider;
     }
