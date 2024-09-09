@@ -1,6 +1,4 @@
-package spring.HelloSpring;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package spring.HelloSpring.exrate;
 
 import java.io.IOException;
 import java.math.BigDecimal;

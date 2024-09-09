@@ -1,4 +1,4 @@
-package spring.HelloSpring;
+package spring.HelloSpring.exrate;
 
 import java.io.IOException;
 import java.math.BigDecimal;

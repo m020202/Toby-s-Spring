@@ -2,6 +2,8 @@ package spring.HelloSpring;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import spring.HelloSpring.payment.Payment;
+import spring.HelloSpring.payment.PaymentService;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -14,15 +16,5 @@ public class Client {
 
         Payment payment1 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println("Payment1:" + payment1);
-        System.out.println("----------\n");
-
-        Payment payment2 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println("Payment2:" + payment2);
-        System.out.println("-----------\n");
-
-        TimeUnit.SECONDS.sleep(3);
-
-        Payment payment3 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println("Payment3:" + payment3);
     }
 }

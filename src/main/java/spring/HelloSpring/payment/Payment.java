@@ -1,4 +1,4 @@
-package spring.HelloSpring;
+package spring.HelloSpring.payment;
 
 import org.springframework.context.annotation.Bean;
 
