@@ -1,5 +1,7 @@
 package spring.HelloSpring.exrate;
 
+import spring.HelloSpring.payment.ExRateProvider;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package spring.HelloSpring.exrate;
 
-import spring.HelloSpring.exrate.ExRateProvider;
+import spring.HelloSpring.payment.ExRateProvider;
 
 import java.io.IOException;
 import java.math.BigDecimal;

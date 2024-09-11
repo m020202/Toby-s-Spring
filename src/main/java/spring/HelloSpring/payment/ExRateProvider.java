@@ -1,4 +1,4 @@
-package spring.HelloSpring.exrate;
+package spring.HelloSpring.payment;
 
 import java.io.IOException;
 import java.math.BigDecimal;

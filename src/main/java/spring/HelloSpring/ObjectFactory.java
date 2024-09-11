@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import spring.HelloSpring.exrate.CachedExRateProvider;
-import spring.HelloSpring.exrate.ExRateProvider;
+import spring.HelloSpring.payment.ExRateProvider;
 import spring.HelloSpring.exrate.WebApiExRateProvider;
 import spring.HelloSpring.payment.PaymentService;
 

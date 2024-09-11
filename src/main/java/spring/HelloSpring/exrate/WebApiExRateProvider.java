@@ -1,8 +1,7 @@
 package spring.HelloSpring.exrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import spring.HelloSpring.exrate.ExRateData;
-import spring.HelloSpring.exrate.ExRateProvider;
+import spring.HelloSpring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
