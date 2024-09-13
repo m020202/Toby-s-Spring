@@ -25,6 +25,13 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
+    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, BigDecimal exRate, LocalDateTime now) {
+        BigDecimal convertAmount = foreignCurrencyAmount.multiply(exRate);
+        LocalDateTime validUntil = now.plusMinutes(30);
+
+        return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertAmount, validUntil);
+    }
+
     @Override
     public String toString() {
         return "Payment{" +
