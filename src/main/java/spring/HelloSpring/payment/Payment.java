@@ -2,6 +2,7 @@ package spring.HelloSpring.payment;
 
 import org.springframework.context.annotation.Bean;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class Payment {
     // 환산 금액 유효 기간
     private LocalDateTime validUntil;
 
+
     public Payment(Long orderId, String currency, BigDecimal foreignCurrencyAmount, BigDecimal exRate, BigDecimal convertAmount, LocalDateTime validUntil) {
         this.orderId = orderId;
         this.currency = currency;
@@ -26,7 +28,8 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
-    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, BigDecimal exRate, LocalDateTime now) {
+    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, ExRateProvider exRateProvider, LocalDateTime now) throws IOException {
+        BigDecimal exRate = exRateProvider.getExRate(currency);
         BigDecimal convertAmount = foreignCurrencyAmount.multiply(exRate);
         LocalDateTime validUntil = now.plusMinutes(30);
 
