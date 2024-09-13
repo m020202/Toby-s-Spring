@@ -3,6 +3,7 @@ package spring.HelloSpring.payment;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.time.Clock;
 import java.time.LocalDateTime;
 
 public class Payment {
@@ -30,6 +31,10 @@ public class Payment {
         LocalDateTime validUntil = now.plusMinutes(30);
 
         return new Payment(orderId, currency, foreignCurrencyAmount, exRate, convertAmount, validUntil);
+    }
+
+    public boolean isValid(Clock clock) {
+        return LocalDateTime.now(clock).isBefore(this.validUntil);
     }
 
     @Override
