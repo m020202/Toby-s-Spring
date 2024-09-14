@@ -26,7 +26,7 @@ class PaymentServiceSpringTest {
     ExRateProviderStub exRateProviderStub;
 
     @Test
-    void convertedAmount() throws IOException {
+    void convertedAmount() {
         // exRate : 1000
         Payment payment1 = paymentService.prepare(1L, "USD", TEN);
 
@@ -42,7 +42,7 @@ class PaymentServiceSpringTest {
     }
 
     @Test
-    void validUntil() throws IOException {
+    void validUntil() {
         Payment payment = paymentService.prepare(1L, "USD", TEN);
 
         // valid until prepare() 30분 뒤로 설정했는가?

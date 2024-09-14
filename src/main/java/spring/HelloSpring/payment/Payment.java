@@ -28,8 +28,7 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
-    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, ExRateProvider exRateProvider, LocalDateTime now) throws IOException {
-        BigDecimal exRate = exRateProvider.getExRate(currency);
+    public static Payment createPrepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount, BigDecimal exRate, LocalDateTime now) {
         BigDecimal convertAmount = foreignCurrencyAmount.multiply(exRate);
         LocalDateTime validUntil = now.plusMinutes(30);
 

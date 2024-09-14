@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 public class ExRateProviderStub implements ExRateProvider {
     private BigDecimal exRate;
     @Override
-    public BigDecimal getExRate(String currency) throws IOException {
+    public BigDecimal getExRate(String currency) {
         return exRate;
     }
 
