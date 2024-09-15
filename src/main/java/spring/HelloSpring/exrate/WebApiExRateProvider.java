@@ -2,6 +2,7 @@ package spring.HelloSpring.exrate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import spring.HelloSpring.api.SimpleApiExecutor;
 import spring.HelloSpring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
@@ -32,7 +33,7 @@ public class WebApiExRateProvider implements ExRateProvider {
 
         String response;
         try {
-            response = executeApi(uri);
+            response = new SimpleApiExecutor().execute(uri);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,16 +43,6 @@ public class WebApiExRateProvider implements ExRateProvider {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    // API를 실행하고, 서버로부터 받은 응답을 가져오는 작업
-    private static String executeApi(URI uri) throws IOException {
-        String response;
-        HttpURLConnection connection = (HttpURLConnection) uri.toURL().openConnection();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            response = br.lines().collect(Collectors.joining());
-        }
-        return response;
     }
 
     // 응답으로 받은 JSON 문자열을 파싱하고 필요한 환율 정보를 추출하는 작업
