@@ -1,8 +1,5 @@
 package spring.HelloSpring.payment;
 
-import org.springframework.context.annotation.Bean;
-
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
