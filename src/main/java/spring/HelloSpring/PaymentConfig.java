@@ -3,6 +3,7 @@ package spring.HelloSpring;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import spring.HelloSpring.api.ApiTemplate;
 import spring.HelloSpring.exrate.CachedExRateProvider;
 import spring.HelloSpring.payment.ExRateProvider;
 import spring.HelloSpring.exrate.WebApiExRateProvider;
@@ -20,8 +21,14 @@ public class PaymentConfig {
 
     @Bean
     public ExRateProvider exRateProvider() {
-        return new WebApiExRateProvider();
+        return new WebApiExRateProvider(apiTemplate());
     }
+
+    @Bean
+    public ApiTemplate apiTemplate() {
+        return new ApiTemplate();
+    }
+
 
     @Bean
     public ExRateProvider cachedRateProvider() {

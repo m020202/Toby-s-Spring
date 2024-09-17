@@ -6,7 +6,11 @@ import spring.HelloSpring.payment.ExRateProvider;
 import java.math.BigDecimal;
 
 public class WebApiExRateProvider implements ExRateProvider {
-    private final ApiTemplate apiTemplate = new ApiTemplate();
+    private final ApiTemplate apiTemplate;
+
+    public WebApiExRateProvider(ApiTemplate apiTemplate) {
+        this.apiTemplate = apiTemplate;
+    }
 
     @Override
     public BigDecimal getExRate(String currency) {
