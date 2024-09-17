@@ -21,6 +21,14 @@ public class ApiTemplate {
         return this.getExRate(url, this.apiExecutor, exRateExtractor);
     }
 
+    public BigDecimal getExRate(String url, ApiExecutor apiExecutor) {
+        return this.getExRate(url, apiExecutor, this.exRateExtractor);
+    }
+
+    public BigDecimal getExRate(String url, ExRateExtractor exRateExtractor) {
+        return this.getExRate(url, this.apiExecutor, exRateExtractor);
+    }
+
     // 콜백 객체도 지정하고 싶을 때
     public static BigDecimal getExRate(String url, ApiExecutor apiExecutor, ExRateExtractor exRateExtractor) {
         URI uri;
