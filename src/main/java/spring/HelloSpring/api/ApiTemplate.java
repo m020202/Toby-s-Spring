@@ -8,8 +8,21 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class ApiTemplate {
+    private final ApiExecutor apiExecutor;
+    private final ExRateExtractor exRateExtractor;
+
+    public ApiTemplate() {
+        this.apiExecutor = new HttpClientApiExecutor();
+        this.exRateExtractor = new ErApiExRateExtractor();
+    }
+
+    // url 만 전달하고 싶을 때
+    public BigDecimal getExRate(String url) {
+        return this.getExRate(url, this.apiExecutor, exRateExtractor);
+    }
+
+    // 콜백 객체도 지정하고 싶을 때
     public static BigDecimal getExRate(String url, ApiExecutor apiExecutor, ExRateExtractor exRateExtractor) {
-        // URL을 준비하고 예외처리를 위한 작업
         URI uri;
         try {
             uri = new URI(url);
