@@ -5,13 +5,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import spring.HelloSpring.api.ApiTemplate;
-import spring.HelloSpring.api.ErApiExRateExtractor;
-import spring.HelloSpring.api.SimpleApiExecutor;
 import spring.HelloSpring.exrate.CachedExRateProvider;
 import spring.HelloSpring.exrate.RestTemplateExRateProvider;
 import spring.HelloSpring.payment.ExRateProvider;
-import spring.HelloSpring.exrate.WebApiExRateProvider;
 import spring.HelloSpring.payment.PaymentService;
 
 import java.time.Clock;
