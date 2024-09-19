@@ -13,4 +13,31 @@ public class Order {
     @Column(unique = true)
     private String no;
     private BigDecimal total;
+
+    public Order(String no, BigDecimal total) {
+        this.no = no;
+        this.total = total;
+    }
+    public Order() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", no='" + no + '\'' +
+                ", total=" + total +
+                '}';
+    }
 }
