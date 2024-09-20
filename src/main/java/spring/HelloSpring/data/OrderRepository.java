@@ -5,8 +5,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import spring.HelloSpring.order.Order;
 
-import java.math.BigDecimal;
-
 public class OrderRepository {
     private final EntityManagerFactory emf;
 
@@ -24,6 +22,8 @@ public class OrderRepository {
         try {
             // em.persist => 영속화 하기
             em.persist(order);
+            // 변경사항을 즉시 반영 (트랜잭션 커밋 전에)
+            em.flush();
             // em에 넣은 엔티티 커밋
             transaction.commit();
         } catch (RuntimeException e) {

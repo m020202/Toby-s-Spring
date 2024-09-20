@@ -18,5 +18,10 @@ public class DataClient {
         repository.save(order);
 
         System.out.println(order);
+
+        Order order2 = new Order("100", BigDecimal.ONE);
+        repository.save(order2);
+
+        System.out.println(order2);
     }
 }
