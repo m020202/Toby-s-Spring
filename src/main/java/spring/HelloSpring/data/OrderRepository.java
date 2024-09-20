@@ -2,6 +2,7 @@ package spring.HelloSpring.data;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import spring.HelloSpring.order.Order;
 
 import java.math.BigDecimal;
@@ -17,13 +18,19 @@ public class OrderRepository {
         // EntityManager 객체 생성
         EntityManager em = emf.createEntityManager();
         // transaction 시작
-        em.getTransaction().begin();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
 
-        // em.persist => 영속화 하기
-        em.persist(order);
-
-        // em에 넣은 엔티티 커밋
-        em.getTransaction().commit();
-        em.close();
+        try {
+            // em.persist => 영속화 하기
+            em.persist(order);
+            // em에 넣은 엔티티 커밋
+            transaction.commit();
+        } catch (RuntimeException e) {
+            if (transaction.isActive()) transaction.rollback();
+            throw e;
+        } finally {
+            if (transaction.isActive()) em.close();
+        }
     }
 }
