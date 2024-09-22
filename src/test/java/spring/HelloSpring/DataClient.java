@@ -1,11 +1,9 @@
 package spring.HelloSpring;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import spring.HelloSpring.data.OrderRepository;
@@ -22,13 +20,14 @@ public class DataClient {
         // transaction begin
         try {
             new TransactionTemplate(transactionManager).execute((TransactionCallback<Order>) status -> {
-                Order order = new Order("100", BigDecimal.TEN);
-                repository.save(order);
-
-                System.out.println(order);
+                Order order1 = new Order("100", BigDecimal.TEN);
+                repository.save(order1);
 
                 Order order2 = new Order("100", BigDecimal.ONE);
                 repository.save(order2);
+
+                Order order3 = new Order("200", BigDecimal.ZERO);
+                repository.save(order3);
 
                 return null;
             });
