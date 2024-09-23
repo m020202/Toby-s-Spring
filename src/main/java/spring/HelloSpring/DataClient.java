@@ -20,14 +20,10 @@ public class DataClient {
         // transaction begin
         try {
             new TransactionTemplate(transactionManager).execute((TransactionCallback<Order>) status -> {
-                Order order1 = new Order("100", BigDecimal.TEN);
-                repository.save(order1);
+                Order order = new Order("100", BigDecimal.TEN);
+                repository.save(order);
 
-                Order order2 = new Order("100", BigDecimal.ONE);
-                repository.save(order2);
-
-                Order order3 = new Order("200", BigDecimal.ZERO);
-                repository.save(order3);
+                System.out.println(order);
 
                 return null;
             });
