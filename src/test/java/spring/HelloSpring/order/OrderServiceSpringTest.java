@@ -1,6 +1,5 @@
 package spring.HelloSpring.order;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +23,4 @@ public class OrderServiceSpringTest {
 
         assertThat(order.getId()).isGreaterThan(0);
     }
-
 }
