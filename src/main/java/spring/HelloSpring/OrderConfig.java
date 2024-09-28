@@ -3,9 +3,8 @@ package spring.HelloSpring;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import spring.HelloSpring.data.JpaOrderRepository;
+import spring.HelloSpring.data.JdbcOrderRepository;
 import spring.HelloSpring.order.OrderRepository;
 import spring.HelloSpring.order.OrderService;
 
@@ -19,6 +18,6 @@ public class OrderConfig {
 
     @Bean
     public OrderRepository orderRepository() {
-        return new JpaOrderRepository();
+        return new JdbcOrderRepository();
     }
 }
