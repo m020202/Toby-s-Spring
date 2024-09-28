@@ -40,4 +40,8 @@ public class Order {
                 ", total=" + total +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -8,16 +8,18 @@ import spring.HelloSpring.data.JdbcOrderRepository;
 import spring.HelloSpring.order.OrderRepository;
 import spring.HelloSpring.order.OrderService;
 
+import javax.sql.DataSource;
+
 @Configuration
 @Import(DataConfig.class)
 public class OrderConfig {
     @Bean
-    public OrderService orderService(PlatformTransactionManager transactionManager) {
-        return new OrderService(orderRepository(), transactionManager);
+    public OrderService orderService(PlatformTransactionManager transactionManager, OrderRepository orderRepository) {
+        return new OrderService(orderRepository, transactionManager);
     }
 
     @Bean
-    public OrderRepository orderRepository() {
-        return new JdbcOrderRepository();
+    public OrderRepository orderRepository(DataSource dataSource) {
+        return new JdbcOrderRepository(dataSource);
     }
 }
