@@ -2,11 +2,13 @@ package spring.HelloSpring.data;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Component;
 import spring.HelloSpring.order.Order;
 import spring.HelloSpring.order.OrderRepository;
 
 import javax.sql.DataSource;
 
+@Component
 public class JdbcOrderRepository implements OrderRepository {
     private final JdbcClient jdbcClient;
 
