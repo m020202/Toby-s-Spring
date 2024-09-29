@@ -38,4 +38,15 @@ public class OrderServiceSpringTest {
         assertThat(orders).hasSize(3);
         orders.forEach(o -> assertThat(o.getId()).isGreaterThan(0));
     }
+
+    @Test
+    void createDuplicatedOrders() { // 일부러 오류가 나도록 테스트 해보기
+        List<OrderReq> orderReqs = List.of(
+                new OrderReq("0300", BigDecimal.ONE),
+                new OrderReq("0300", BigDecimal.TEN),
+        );
+
+        var orders = orderService.createOrders(orderReqs);
+
+    }
 }
