@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import spring.HelloSpring.OrderConfig;
 
+import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -18,6 +20,8 @@ import static org.assertj.core.api.Assertions.*;
 public class OrderServiceSpringTest {
     @Autowired // spring extension에 의해서 컨테이너 초기화 후 자동으로 빈 주입
     OrderService orderService;
+    @Autowired
+    DataSource dataSource;
 
     @Test
     void createOrder() {
@@ -48,5 +52,8 @@ public class OrderServiceSpringTest {
         );
 
         assertThatThrownBy(() -> orderService.createOrders(orderReqs)).isInstanceOf(DataIntegrityViolationException.class);
+        JdbcClient client = JdbcClient.create(dataSource);
+        Long count = client.sql("select count(*) from orders where no = '0300'").query(Long.class).single();
+        assertThat(count).isEqualTo(0);
     }
 }
