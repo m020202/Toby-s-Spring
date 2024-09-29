@@ -3,6 +3,7 @@ package spring.HelloSpring.order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import spring.HelloSpring.OrderConfig;
@@ -43,10 +44,9 @@ public class OrderServiceSpringTest {
     void createDuplicatedOrders() { // 일부러 오류가 나도록 테스트 해보기
         List<OrderReq> orderReqs = List.of(
                 new OrderReq("0300", BigDecimal.ONE),
-                new OrderReq("0300", BigDecimal.TEN),
+                new OrderReq("0300", BigDecimal.TEN)
         );
 
-        var orders = orderService.createOrders(orderReqs);
-
+        assertThatThrownBy(() -> orderService.createOrders(orderReqs)).isInstanceOf(DataIntegrityViolationException.class);
     }
 }
