@@ -3,6 +3,7 @@ package spring.HelloSpring.order;
 import org.springframework.transaction.PlatformTransactionManager;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class OrderService {
@@ -22,6 +23,9 @@ public class OrderService {
     }
 
     public List<Order> createOrders(List<OrderReq> reqs) {
-        return null;
+        List<Order> collect = reqs.stream().map(o ->
+                createOrder(o.no(), o.total())).toList();
+
+        return collect;
     }
 }
