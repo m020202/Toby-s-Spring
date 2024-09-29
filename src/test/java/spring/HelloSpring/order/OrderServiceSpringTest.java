@@ -8,6 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import spring.HelloSpring.OrderConfig;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -22,5 +23,19 @@ public class OrderServiceSpringTest {
         var order = orderService.createOrder("0100", BigDecimal.TEN);
 
         assertThat(order.getId()).isGreaterThan(0);
+    }
+
+    @Test
+    void createOrders() {
+        List<OrderReq> orderReqs = List.of(
+                new OrderReq("0200", BigDecimal.ONE),
+                new OrderReq("0201", BigDecimal.TEN),
+                new OrderReq("0202", BigDecimal.ONE)
+        );
+
+        var orders = orderService.createOrders(orderReqs);
+
+        assertThat(orders).hasSize(3);
+        orders.forEach(o -> assertThat(o.getId()).isGreaterThan(0));
     }
 }
