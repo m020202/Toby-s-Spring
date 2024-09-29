@@ -1,6 +1,8 @@
 package spring.HelloSpring.order;
 
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,9 +25,8 @@ public class OrderService {
     }
 
     public List<Order> createOrders(List<OrderReq> reqs) {
-        List<Order> collect = reqs.stream().map(o ->
-                createOrder(o.no(), o.total())).toList();
-
-        return collect;
+        return new TransactionTemplate(transactionManager).execute(status ->
+            reqs.stream().map(o -> createOrder(o.no(), o.total())).toList()
+        );
     }
 }
