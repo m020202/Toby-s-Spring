@@ -6,17 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.PlatformTransactionManager;
 import spring.HelloSpring.order.OrderRepository;
-import spring.HelloSpring.order.OrderService;
-
-import javax.sql.DataSource;
+import spring.HelloSpring.order.OrderServiceImpl;
 
 @Configuration
 @Import(DataConfig.class)
 @ComponentScan
 public class OrderConfig {
     @Bean
-    public OrderService orderService(PlatformTransactionManager transactionManager, OrderRepository orderRepository) {
-        return new OrderService(orderRepository, transactionManager);
+    public OrderServiceImpl orderService(PlatformTransactionManager transactionManager, OrderRepository orderRepository) {
+        return new OrderServiceImpl(orderRepository);
     }
 
 //    @Bean

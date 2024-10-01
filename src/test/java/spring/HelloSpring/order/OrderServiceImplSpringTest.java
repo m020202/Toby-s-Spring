@@ -17,15 +17,15 @@ import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = OrderConfig.class)
-public class OrderServiceSpringTest {
+public class OrderServiceImplSpringTest {
     @Autowired // spring extension에 의해서 컨테이너 초기화 후 자동으로 빈 주입
-    OrderService orderService;
+    OrderServiceImpl orderServiceImpl;
     @Autowired
     DataSource dataSource;
 
     @Test
     void createOrder() {
-        var order = orderService.createOrder("0100", BigDecimal.TEN);
+        var order = orderServiceImpl.createOrder("0100", BigDecimal.TEN);
 
         assertThat(order.getId()).isGreaterThan(0);
     }
@@ -38,7 +38,7 @@ public class OrderServiceSpringTest {
                 new OrderReq("0202", BigDecimal.ONE)
         );
 
-        var orders = orderService.createOrders(orderReqs);
+        var orders = orderServiceImpl.createOrders(orderReqs);
 
         assertThat(orders).hasSize(3);
         orders.forEach(o -> assertThat(o.getId()).isGreaterThan(0));
@@ -51,7 +51,7 @@ public class OrderServiceSpringTest {
                 new OrderReq("0300", BigDecimal.TEN)
         );
 
-        assertThatThrownBy(() -> orderService.createOrders(orderReqs)).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> orderServiceImpl.createOrders(orderReqs)).isInstanceOf(DataIntegrityViolationException.class);
         JdbcClient client = JdbcClient.create(dataSource);
         Long count = client.sql("select count(*) from orders where no = '0300'").query(Long.class).single();
         assertThat(count).isEqualTo(0);
