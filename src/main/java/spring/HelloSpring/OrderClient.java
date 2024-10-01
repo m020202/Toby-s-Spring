@@ -4,7 +4,6 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import spring.HelloSpring.order.Order;
 import spring.HelloSpring.order.OrderService;
-import spring.HelloSpring.order.OrderServiceImpl;
 
 import java.math.BigDecimal;
 
