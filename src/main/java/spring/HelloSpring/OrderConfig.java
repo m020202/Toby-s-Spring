@@ -8,7 +8,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import spring.HelloSpring.order.OrderRepository;
 import spring.HelloSpring.order.OrderService;
 import spring.HelloSpring.order.OrderServiceImpl;
-import spring.HelloSpring.order.OrderServiceTransactionProxy;
 
 @Configuration
 @Import(DataConfig.class)
@@ -16,10 +15,7 @@ import spring.HelloSpring.order.OrderServiceTransactionProxy;
 public class OrderConfig {
     @Bean
     public OrderService orderService(PlatformTransactionManager transactionManager, OrderRepository orderRepository) {
-        return new OrderServiceTransactionProxy(
-                new OrderServiceImpl(orderRepository),
-                transactionManager
-        );
+        return new OrderServiceImpl(orderRepository);
     }
 
 //    @Bean
