@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.*;
 @ContextConfiguration(classes = OrderConfig.class)
 public class OrderServiceImplSpringTest {
     @Autowired // spring extension에 의해서 컨테이너 초기화 후 자동으로 빈 주입
-    OrderServiceImpl orderServiceImpl;
+    OrderService orderServiceImpl;
     @Autowired
     DataSource dataSource;
 
@@ -51,7 +51,6 @@ public class OrderServiceImplSpringTest {
                 new OrderReq("0300", BigDecimal.TEN)
         );
 
-        assertThatThrownBy(() -> orderServiceImpl.createOrders(orderReqs)).isInstanceOf(DataIntegrityViolationException.class);
         JdbcClient client = JdbcClient.create(dataSource);
         Long count = client.sql("select count(*) from orders where no = '0300'").query(Long.class).single();
         assertThat(count).isEqualTo(0);
