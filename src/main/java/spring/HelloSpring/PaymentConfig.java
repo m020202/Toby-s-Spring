@@ -13,7 +13,6 @@ import spring.HelloSpring.payment.PaymentService;
 import java.time.Clock;
 
 @Configuration
-@ComponentScan
 public class PaymentConfig {
     @Bean
     public PaymentService paymentService() {
